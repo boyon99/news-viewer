@@ -16,7 +16,8 @@ const NewsItemBlock = styled.div`
   }
   .contents {
     h2 {
-      margin: 0;
+      margin: 0 0 5px 0;
+      font-size : 20px;
       a {
         color: black;
       }
@@ -24,8 +25,8 @@ const NewsItemBlock = styled.div`
     p {
       margin: 0;
       line-height: 1.5;
-      margin-top: 0.5rem;
       white-space: normal;
+      font-size:14px;
     }
   }
   & + & {
@@ -34,7 +35,8 @@ const NewsItemBlock = styled.div`
 `;
 
 const NewsItem = ({ article }) => {
-  const { title, description, url, urlToImage } = article;
+  const { title, author, url, urlToImage, publishedAt } = article;
+  let publishedAtTime = publishedAt.split('T')
   return (
     <div>
       <NewsItemBlock>
@@ -47,7 +49,8 @@ const NewsItem = ({ article }) => {
           <h2>
             <a href={url} target="_blank" rel='noopener noreferrer'>{title}</a>
           </h2>
-          <p>{description === null ? "상세내용이 없습니다. 제목 클릭 시 유튜브로 이동합니다." : description}</p>
+          <p>{author === null ? "" : `${author}`}</p>
+          <p>{publishedAt === null ? "" : `${publishedAtTime[0]}`}</p>
         </div>
       </NewsItemBlock>
     </div>
